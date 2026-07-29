@@ -15,6 +15,12 @@ maxUploadSize = 10
 maxMessageSize = 50
 enableXsrfProtection = true
 enableCORS = true
+enableStaticServing = false
+folderWatchBlacklist = ["**"]
 
 [client]
 showErrorDetails = false
+toolbarMode = "viewer"
+
+[global]
+developmentMode = false
