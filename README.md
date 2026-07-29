@@ -1,148 +1,68 @@
 # ElectroSim-EIS Analyzer
 
-**A publication-ready Streamlit interface for Electrochemical Impedance
-Spectroscopy (EIS) with private-model fitting.**
+**A Streamlit app for Electrochemical Impedance Spectroscopy (EIS) analysis.**
 
 Maintained by **Rajeev Kumar** (<rkumar@nccu.edu>), North Carolina Central
 University.
 
-> This public repository contains the Streamlit web-demo only.
-> Proprietary EIS fitting logic stays in a private "Working apps/EIS" project.
+---
+
+## What you can do
+
+This app is organized around the EIS workflow used in the private suite:
+
+- **Nyquist**: upload impedance spectra, map real/imaginary columns, overlay
+  plots, read approximate Rs/Rct landmarks, and run a circuit fit.
+- **Bode**: upload magnitude and/or phase data, overlay plots, and inspect the
+  characteristic frequency.
+- **Mott-Schottky**: upload summary curves or raw spectra, plot 1/C² vs
+  potential, and extract flat-band/carrier-density information.
+- **Band diagram**: turn fitted Mott-Schottky results into a simple energy
+  summary for multiple materials.
+- **Tutorials**: read the key equations and the short workflow explanation.
 
 ---
 
-## What this repo does
+## Workflow
 
-The web app provides:
+1. Start in the analyzer that matches your file type.
+2. Upload one or more files.
+3. Confirm the auto-mapped columns.
+4. Review the overlay plot and the quick-read values.
+5. Run the fit or interpretation step if needed.
+6. Use the Tutorials tab for the equations behind each result.
 
-- **Data Files tab** for normalized preview and CSV export
-- **Data Plotting tab** for quick custom X/Y inspection
-- **Nyquist tab** and **Bode tab** for core impedance plots
-- **Mott-Schottky tab** with plot + advanced private analysis action
-- **Equivalent-Circuit tab** with private fitting + DRT action
-- **Energy Levels tab** for private energy-diagram generation
-
-This repo intentionally excludes installer, desktop packaging, and private
-analysis source.
+The common pattern is the same in every analyzer: upload first, map columns,
+inspect the plot, then interpret the output.
 
 ---
 
-## Public and private split
+## Input at a glance
 
-- **Public (this repo):** Streamlit UI in `release/web-demo/`
-- **Private (your Working apps/EIS):** fitting engine and proprietary logic
+- **Nyquist**: `frequency_hz`, `z_real_ohm`, `z_imag_ohm`
+- **Bode**: frequency with `|Z|` and/or phase
+- **Mott-Schottky**: potential with either `C` or `1/C²`
 
-The public app sends normalized EIS data to private service endpoints:
+Common column names are auto-detected where possible, including `freq`, `f`,
+`frequency(hz)`, `zreal`, `zimag`, `Z'`, and `Z''`.
 
-- `POST /fit/eis`
-- `POST /analyze/mott-schottky`
-- `POST /analyze/drt`
-- `POST /analyze/energy-levels`
-
-Request payload shape:
-
-```json
-{
-  "model": "Randles",
-  "data": [
-    {
-      "frequency_hz": 1000.0,
-      "z_real_ohm": 1.25,
-      "z_imag_ohm": -0.62
-    }
-  ]
-}
-```
-
----
-
-## Repository structure
-
-```text
-ElectroSim-EIS.py
-streamlit_app.py
-requirements.txt
-release/
-  web-demo/
-    ElectroSim-EIS.py
-    requirements.txt
-    .streamlit/
-      config.toml
-      secrets.toml.example
-```
-
----
-
-## Input data format
-
-Required columns after normalization:
-
-- `frequency_hz`
-- `z_real_ohm`
-- `z_imag_ohm`
-
-Common aliases are normalized automatically (`freq`, `f`, `frequency(hz)`,
-`zreal`, `zimag`, `Z'`, `Z''`, etc.).
-
-Supported upload formats:
+Supported uploads:
 
 - CSV
 - XLSX / XLS
-- TXT (auto-detected delimiter)
+- TXT and similar delimited text files
 
 ---
 
-## Running the web app locally
+## Tutorials summary
 
-The web app lives in `release/web-demo/` and must be launched with
-`streamlit run`:
+The Tutorials tab briefly defines the core EIS relationships used by the app:
 
-```powershell
-cd release\web-demo
-py -3.13 -m pip install -r requirements.txt
-py -3.13 -m streamlit run ElectroSim-EIS.py
-```
-
-Do not use plain `python ElectroSim-EIS.py`.
-
----
-
-## Deploying publicly (low-cost)
-
-1. Push this repository to GitHub (public).
-2. Create an app on Streamlit Community Cloud.
-3. Preferred main file path: `ElectroSim-EIS.py`.
-4. Alternate compatibility path: `streamlit_app.py`.
-5. Add secrets in Streamlit Cloud app settings.
-6. Deploy.
-
-This is the lowest-cost hosting option for your public GUI.
-
-The root launcher exists so default Streamlit settings work even when no
-custom app path is configured.
-
----
-
-## Streamlit secrets
-
-Use `release/web-demo/.streamlit/secrets.toml.example` as template.
-
-Set the values in Streamlit Cloud secrets (not in git):
-
-```toml
-PRIVATE_API_BASE_URL = "https://your-private-eis-service.example.com"
-PRIVATE_API_TOKEN = "replace-with-strong-token"
-REQUEST_TIMEOUT_SEC = 45
-```
-
----
-
-## Security notes
-
-- Never commit private engine code to this repo.
-- Never commit `.streamlit/secrets.toml`.
-- Use short-lived tokens and rotate them periodically.
-- Restrict private API access by CORS, firewall, or allowlist where possible.
+- complex impedance and phase
+- resistor, capacitor, CPE, and Warburg elements
+- the Randles circuit
+- area-normalized quantities such as Rs·A, Cdl/A, and j₀
+- the Mott-Schottky equation for flat-band and carrier-density estimates
 
 ---
 
