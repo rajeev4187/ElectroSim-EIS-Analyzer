@@ -15,10 +15,12 @@ University.
 
 The web app provides:
 
-- **Nyquist plotting** from uploaded EIS files
-- **Bode plotting** (|Z| and phase vs frequency)
-- **Private-fit execution** via secure API call to your private EIS engine
-- **Data preview** for quick validation before fitting
+- **Data Files tab** for normalized preview and CSV export
+- **Data Plotting tab** for quick custom X/Y inspection
+- **Nyquist tab** and **Bode tab** for core impedance plots
+- **Mott-Schottky tab** with plot + advanced private analysis action
+- **Equivalent-Circuit tab** with private fitting + DRT action
+- **Energy Levels tab** for private energy-diagram generation
 
 This repo intentionally excludes installer, desktop packaging, and private
 analysis source.
@@ -30,9 +32,12 @@ analysis source.
 - **Public (this repo):** Streamlit UI in `release/web-demo/`
 - **Private (your Working apps/EIS):** fitting engine and proprietary logic
 
-The public app sends normalized EIS data to the private service endpoint:
+The public app sends normalized EIS data to private service endpoints:
 
 - `POST /fit/eis`
+- `POST /analyze/mott-schottky`
+- `POST /analyze/drt`
+- `POST /analyze/energy-levels`
 
 Request payload shape:
 
