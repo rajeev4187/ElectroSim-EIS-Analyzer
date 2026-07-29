@@ -5,6 +5,8 @@
 Maintained by **Rajeev Kumar** (<rkumar@nccu.edu>), North Carolina Central
 University.
 
+Open the live app: [ElectroSim-EIS Analyzer on Streamlit](https://electrosim-eis-analyzer.streamlit.app/)
+
 ---
 
 ## What you can do
