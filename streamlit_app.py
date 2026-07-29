@@ -10,7 +10,7 @@ import runpy
 from pathlib import Path
 
 PRIVATE_APP_PATH = Path(
-	r"E:/GitHub repos done/Working-Apps/EIS/ElectroSim-EIS.py"
+    r"E:/GitHub repos done/Working-Apps/EIS/ElectroSim-EIS.py"
 )
 PUBLIC_APP_PATH = Path(__file__).parent / "ElectroSim-EIS.py"
 APP_PATH = PRIVATE_APP_PATH if PRIVATE_APP_PATH.exists() else PUBLIC_APP_PATH
