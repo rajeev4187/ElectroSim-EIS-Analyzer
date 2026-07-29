@@ -767,16 +767,22 @@ def _nyquist_tab(area: float, cfg: ApiConfig, nonce: int) -> None:
                 "This dataset has no frequency column. The public app can "
                 "still plot it, but the private fit needs frequency."
             )
-        if st.button("▶ Fit Nyquist circuit", key=f"nyq_fitbtn_{nonce}"):
-            if not _api_ready(cfg):
-                st.warning("Add private API secrets to run fitting.")
-            else:
-                try:
-                    result = _fit_nyquist_backend(ds, area, cfg)
-                    st.success("Fit completed.")
-                    st.json(result)
-                except Exception as exc:
-                    st.error(f"Fit failed: {exc}")
+        fit_ready = _api_ready(cfg)
+        if not fit_ready:
+            st.info(
+                "Private fit actions are unavailable in this deployment."
+            )
+        if st.button(
+            "▶ Fit Nyquist circuit",
+            key=f"nyq_fitbtn_{nonce}",
+            disabled=not fit_ready,
+        ):
+            try:
+                result = _fit_nyquist_backend(ds, area, cfg)
+                st.success("Fit completed.")
+                st.json(result)
+            except Exception as exc:
+                st.error(f"Fit failed: {exc}")
 
 
 def _bode_tab(area: float, nonce: int) -> None:
@@ -996,26 +1002,32 @@ def _mott_schottky_tab(
                 st.warning("No usable points found.")
                 continue
             st.dataframe(_arrow_safe(dd.head(30)), width="stretch")
-            if st.button("▶ Fit Mott-Schottky", key=f"ms_fit_{nonce}_{idx}"):
-                if not _api_ready(cfg):
-                    st.warning("Add private API secrets to run this fit.")
-                else:
-                    try:
-                        payload = {
-                            "sample": ds["name"],
-                            "data": dd.to_dict(orient="records"),
-                            "area_cm2": area,
-                            "temperature_K": temp,
-                            "n_electrons": n_e,
-                        }
-                        result = _fit_ms_backend(payload, cfg)
-                        st.success("Fit completed.")
-                        st.json(result)
-                        st.session_state.setdefault("ms_results", {})[
-                            ds["name"]
-                        ] = result
-                    except Exception as exc:
-                        st.error(f"Fit failed: {exc}")
+            fit_ready = _api_ready(cfg)
+            if not fit_ready:
+                st.info(
+                    "Private fit actions are unavailable in this deployment."
+                )
+            if st.button(
+                "▶ Fit Mott-Schottky",
+                key=f"ms_fit_{nonce}_{idx}",
+                disabled=not fit_ready,
+            ):
+                try:
+                    payload = {
+                        "sample": ds["name"],
+                        "data": dd.to_dict(orient="records"),
+                        "area_cm2": area,
+                        "temperature_K": temp,
+                        "n_electrons": n_e,
+                    }
+                    result = _fit_ms_backend(payload, cfg)
+                    st.success("Fit completed.")
+                    st.json(result)
+                    st.session_state.setdefault("ms_results", {})[
+                        ds["name"]
+                    ] = result
+                except Exception as exc:
+                    st.error(f"Fit failed: {exc}")
 
 
 def _band_tab(area: float) -> None:
