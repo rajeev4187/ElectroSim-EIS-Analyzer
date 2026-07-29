@@ -3,6 +3,12 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# --- Allowlist exception ----------------------------------------------------
+# The public web-demo ships its private analysis engine as compiled
+# bytecode (one .pyc per supported Python: cp312/cp313/cp314). The blanket
+# *.py[codz] rule above would otherwise silently drop these on every commit.
+!release/web-demo/eis_engine.*.pyc
+
 # C extensions
 *.so
 
