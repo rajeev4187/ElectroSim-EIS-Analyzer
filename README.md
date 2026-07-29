@@ -59,6 +59,8 @@ Request payload shape:
 ## Repository structure
 
 ```text
+streamlit_app.py
+requirements.txt
 release/
   web-demo/
     ElectroSim-EIS.py
@@ -108,11 +110,15 @@ Do not use plain `python ElectroSim-EIS.py`.
 
 1. Push this repository to GitHub (public).
 2. Create an app on Streamlit Community Cloud.
-3. Set main file path to `release/web-demo/ElectroSim-EIS.py`.
-4. Add secrets in Streamlit Cloud app settings.
-5. Deploy.
+3. Preferred main file path: `streamlit_app.py`.
+4. Alternative path (explicit): `release/web-demo/ElectroSim-EIS.py`.
+5. Add secrets in Streamlit Cloud app settings.
+6. Deploy.
 
 This is the lowest-cost hosting option for your public GUI.
+
+The root launcher exists so default Streamlit settings work even when no
+custom app path is configured.
 
 ---
 

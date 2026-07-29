@@ -58,10 +58,19 @@ class ApiConfig:
 
 
 def _load_api_config() -> ApiConfig:
-    base_url = st.secrets.get("PRIVATE_API_BASE_URL")
-    token = st.secrets.get("PRIVATE_API_TOKEN")
-    timeout_sec = int(st.secrets.get("REQUEST_TIMEOUT_SEC", 45))
-    return ApiConfig(base_url=base_url, token=token, timeout_sec=timeout_sec)
+    # Streamlit Cloud raises if secrets are not configured yet.
+    try:
+        base_url = st.secrets.get("PRIVATE_API_BASE_URL")
+        token = st.secrets.get("PRIVATE_API_TOKEN")
+        timeout_sec = int(st.secrets.get("REQUEST_TIMEOUT_SEC", 45))
+    except Exception:
+        return ApiConfig(base_url=None, token=None, timeout_sec=45)
+
+    return ApiConfig(
+        base_url=base_url,
+        token=token,
+        timeout_sec=timeout_sec,
+    )
 
 
 def _api_ready(cfg: ApiConfig) -> bool:
