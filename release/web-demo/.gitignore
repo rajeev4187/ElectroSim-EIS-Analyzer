@@ -1,0 +1,13 @@
+# Streamlit secrets (never commit)
+.streamlit/secrets.toml
+
+# Local virtual environments and cache
+__pycache__/
+.venv/
+venv/
+
+# Editor / OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
