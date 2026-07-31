@@ -90,6 +90,12 @@ BibTeX:
 A machine-readable [`CITATION.cff`](CITATION.cff) is also included, which
 GitHub uses to power the "Cite this repository" button on the repo page.
 
+## Acknowledgments
+
+Development of this app was assisted by AI coding tools — **Claude**
+(Anthropic) and **GitHub Copilot** — used to help write and modify parts of
+the codebase.
+
 ## License
 
 See `LICENSE` for usage terms.
