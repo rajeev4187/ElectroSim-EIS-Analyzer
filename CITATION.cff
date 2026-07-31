@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ElectroSim-EIS Analyzer"
+type: software
+authors:
+  - family-names: Kumar
+    given-names: Rajeev
+    email: rkumar@nccu.edu
+    affiliation: North Carolina Central University
+repository-code: "https://github.com/rajeev4187/ElectroSim-EIS-Analyzer"
+url: "https://electrosim-eis-analyzer.streamlit.app/"
+license: MIT
+date-released: 2026-07-31
+keywords:
+  - electrochemical impedance spectroscopy
+  - EIS
+  - Mott-Schottky
+  - Nyquist
+  - Bode
+  - Streamlit

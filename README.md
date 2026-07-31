@@ -68,6 +68,28 @@ The Tutorials tab briefly defines the core EIS relationships used by the app:
 
 ---
 
+## How to cite
+
+If this tool contributes to your research, please cite it as:
+
+> Kumar, R. (2026). *ElectroSim-EIS Analyzer* [Computer software].
+> North Carolina Central University.
+> <https://github.com/rajeev4187/ElectroSim-EIS-Analyzer>
+
+BibTeX:
+
+```bibtex
+@software{kumar_electrosim_eis_analyzer,
+  author  = {Kumar, Rajeev},
+  title   = {ElectroSim-EIS Analyzer},
+  year    = {2026},
+  url     = {https://github.com/rajeev4187/ElectroSim-EIS-Analyzer}
+}
+```
+
+A machine-readable [`CITATION.cff`](CITATION.cff) is also included, which
+GitHub uses to power the "Cite this repository" button on the repo page.
+
 ## License
 
 See `LICENSE` for usage terms.
