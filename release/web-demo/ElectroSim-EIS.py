@@ -120,3 +120,15 @@ except Exception as exc:
     ) from exc
 
 exec(_code, globals())
+
+# The analysis engine (compiled above) does not include citation info.
+# Append it to the sidebar here, outside the compiled bytecode, so it
+# stays editable without needing to recompile the .pyc files.
+import streamlit as _st
+
+_st.sidebar.markdown("---")
+_st.sidebar.caption(
+    "**Cite this tool:** Kumar, R. (2026). *ElectroSim-EIS Analyzer* "
+    "[Computer software]. North Carolina Central University. "
+    "https://github.com/rajeev4187/ElectroSim-EIS-Analyzer"
+)
