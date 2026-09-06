@@ -13,6 +13,11 @@ Open the live app: [ElectroSim-EIS Analyzer on Streamlit](https://electrosim-eis
 
 This app is organized around the EIS workflow used in the private suite:
 
+**Reads instrument files directly.** Besides CSV/Excel/TXT, every uploader
+also takes raw **BioLogic EC-Lab `.mpr`/`.mpt`** and **Pine Research
+AfterMath `.paax`** exports, frequency included, with a picker when one file
+bundles several experiments.
+
 - **Nyquist**: upload impedance spectra, map real/imaginary columns, overlay
   plots, read approximate Rs/Rct landmarks, run a circuit fit, and check an
   admittance (Y = 1/Z) view plus inductive-loop/open-arc diagnostics.
@@ -21,18 +26,52 @@ This app is organized around the EIS workflow used in the private suite:
 - **Mott-Schottky**: upload summary curves or raw spectra, plot 1/C² vs
   potential, and extract flat-band/carrier-density information.
 - **Battery**: fit a finite-length (bounded) Warburg circuit, get D_Li⁺ from
-  the Z′ vs ω⁻¹ᐟ² line, and break down degradation across cycles by process
-  (SEI, charge transfer, diffusion).
+  the Z′ vs ω⁻¹ᐟ² line, break down degradation across cycles by process (SEI,
+  charge transfer, diffusion), and read electrode tortuosity/MacMullin number
+  from a symmetric blocking-electrolyte cell.
 - **Solid-State Electrolyte**: decompose a temperature series into
   bulk/grain-boundary/electrode resistances, fit activation energy per
   process, and track interfacial degradation over time.
+- **Corrosion**: fit the Rs + (Rct ∥ CPE) corrosion-cell circuit and get
+  corrosion current density/rate via Stern–Geary and ASTM G102, or upload a
+  time series for a protective coating to track pore resistance and read
+  % water uptake (Brasher–Kingsbury) as it degrades.
+- **Sensing**: upload one spectrum per analyte concentration (plus a blank)
+  to build a calibration curve and get limit of detection/quantification
+  (LOD/LOQ), either from a fixed-frequency reading or a batch circuit fit.
 - **Band diagram**: turn fitted Mott-Schottky results into a simple energy
   summary for multiple materials.
 - **Tutorials**: read the key equations and the short workflow explanation.
 
-Both battery-facing tabs also offer **DRT** (Distribution of Relaxation
-Times), a model-free deconvolution that counts and sizes processes without
-committing to a circuit topology.
+Nyquist, Battery, Solid-State Electrolyte, and Corrosion all detect and
+explain the two ways a Nyquist trace curls inward — an inductive loop and an
+arc that never closes. Battery and Solid-State Electrolyte also offer
+**DRT** (Distribution of Relaxation Times), a model-free deconvolution that
+counts and sizes processes without committing to a circuit topology.
+
+---
+
+## Circuit models & fitting
+
+Every analyzer shares one circuit-fitting engine: complex nonlinear
+least-squares with multi-start restarts (to avoid a fit landing in a local
+minimum), an RMS relative-residual (%) fit-quality score alongside the
+Kramers–Kronig check, and a batch-fit mode that tracks parameters across a
+time or temperature series. A circuit builder lets you pick from **25 built-in
+equivalent circuits**, from the basic Rs / Randles / two-time-constant family
+up through specialized literature models for particular systems:
+
+- Inductive loops (high- and low-frequency), and finite-length (bounded)
+  Warburg diffusion for batteries
+- A porous-electrode transmission line for tortuosity, and a 3-time-constant
+  bulk/grain-boundary/electrode model for solid electrolytes
+- Graphite-SEI and coated-metal two-arc models for degradation and corrosion
+- A Gerischer element and finite-length Gerischer for SOFC/fuel-cell
+  cathodes, and a mixed ionic-electronic conductor (MIEC) transmission line
+- Cole–Cole (bioimpedance), dual-Randles (PEM electrolyzers), and
+  diffusion-recombination transmission lines for perovskite/DSSC solar cells
+- Parallel-diffusion Warburg and Maxwell–Wagner relaxation for composite and
+  solid polymer electrolytes
 
 ---
 
@@ -55,6 +94,7 @@ inspect the plot, then interpret the output.
 - **Nyquist**: `frequency_hz`, `z_real_ohm`, `z_imag_ohm`
 - **Bode**: frequency with `|Z|` and/or phase
 - **Mott-Schottky**: potential with either `C` or `1/C²`
+- **Corrosion / Sensing**: same as Nyquist — Z′/Z″ vs frequency
 
 Common column names are auto-detected where possible, including `freq`, `f`,
 `frequency(hz)`, `zreal`, `zimag`, `Z'`, and `Z''`.
@@ -64,6 +104,8 @@ Supported uploads:
 - CSV
 - XLSX / XLS
 - TXT and similar delimited text files
+- Raw instrument exports, parsed directly (frequency included): **BioLogic
+  EC-Lab** `.mpr` / `.mpt` and **Pine Research AfterMath** `.paax`
 
 ---
 
