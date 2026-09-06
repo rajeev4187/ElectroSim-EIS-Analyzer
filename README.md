@@ -1,11 +1,36 @@
-# ElectroSim-EIS Analyzer
+<div align="center">
+
+# 🔌 ElectroSim-EIS Analyzer
 
 **A Streamlit app for Electrochemical Impedance Spectroscopy (EIS) analysis.**
 
-Maintained by **Rajeev Kumar** (<rkumar@nccu.edu>), North Carolina Central
-University.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://electrosim-eis-analyzer.streamlit.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](release/web-demo/requirements.txt)
+[![Circuit models](https://img.shields.io/badge/circuit%20models-25-informational)](#circuit-models--fitting)
 
-Open the live app: [ElectroSim-EIS Analyzer on Streamlit](https://electrosim-eis-analyzer.streamlit.app/)
+Maintained by **Rajeev Kumar** (<rkumar@nccu.edu>), North Carolina Central
+University
+
+**[🚀 Open the live app](https://electrosim-eis-analyzer.streamlit.app/)** ·
+[Report an issue](https://github.com/rajeev4187/ElectroSim-EIS-Analyzer/issues) ·
+[Cite this tool](#how-to-cite)
+
+<!-- TODO: swap in a real screenshot/GIF of the app once one is captured -->
+<img src="https://placehold.co/960x520/0f172a/ffffff?text=ElectroSim-EIS+Analyzer" alt="App screenshot placeholder" width="100%">
+
+</div>
+
+---
+
+## Contents
+
+[What you can do](#what-you-can-do) ·
+[Circuit models & fitting](#circuit-models--fitting) ·
+[Workflow](#workflow) ·
+[Input at a glance](#input-at-a-glance) ·
+[Tutorials summary](#tutorials-summary) ·
+[How to cite](#how-to-cite)
 
 ---
 
