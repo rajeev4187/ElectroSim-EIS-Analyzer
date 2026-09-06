@@ -8,6 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](release/web-demo/requirements.txt)
 [![Circuit models](https://img.shields.io/badge/circuit%20models-25-informational)](#circuit-models--fitting)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22447886-blue.svg)](https://doi.org/10.5281/zenodo.22447886)
 
 Maintained by **Rajeev Kumar** (<rkumar@nccu.edu>), North Carolina Central
 University
@@ -153,11 +154,12 @@ The Tutorials tab briefly defines the core EIS relationships used by the app:
 
 ## How to cite
 
-If this tool contributes to your research, please cite it as:
+If this tool contributes to your research, please cite the archived release
+on Zenodo:
 
-> Kumar, R. (2026). *ElectroSim-EIS Analyzer* [Computer software].
-> North Carolina Central University.
-> <https://github.com/rajeev4187/ElectroSim-EIS-Analyzer>
+> Kumar, R. (2026). *ElectroSim-EIS Analyzer* (V2.0) [Computer software].
+> North Carolina Central University. Zenodo.
+> <https://doi.org/10.5281/zenodo.22447886>
 
 BibTeX:
 
@@ -165,8 +167,11 @@ BibTeX:
 @software{kumar_electrosim_eis_analyzer,
   author  = {Kumar, Rajeev},
   title   = {ElectroSim-EIS Analyzer},
+  version = {V2.0},
   year    = {2026},
-  url     = {https://github.com/rajeev4187/ElectroSim-EIS-Analyzer}
+  publisher = {Zenodo},
+  doi     = {10.5281/zenodo.22447886},
+  url     = {https://doi.org/10.5281/zenodo.22447886}
 }
 ```
 

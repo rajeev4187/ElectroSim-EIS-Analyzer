@@ -116,6 +116,6 @@ import streamlit as _st
 _st.sidebar.markdown("---")
 _st.sidebar.caption(
     "**Cite this tool:** Kumar, R. (2026). *ElectroSim-EIS Analyzer* "
-    "[Computer software]. North Carolina Central University. "
-    "https://github.com/rajeev4187/ElectroSim-EIS-Analyzer"
+    "(V2.0) [Computer software]. North Carolina Central University. "
+    "Zenodo. https://doi.org/10.5281/zenodo.22447886"
 )

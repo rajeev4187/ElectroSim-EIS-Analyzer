@@ -10,7 +10,12 @@ authors:
 repository-code: "https://github.com/rajeev4187/ElectroSim-EIS-Analyzer"
 url: "https://electrosim-eis-analyzer.streamlit.app/"
 license: MIT
-date-released: 2026-07-31
+version: V2.0
+date-released: 2026-09-06
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22447886
+    description: Zenodo archive of this release
 keywords:
   - electrochemical impedance spectroscopy
   - EIS
