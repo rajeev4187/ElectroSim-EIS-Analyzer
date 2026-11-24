@@ -40,9 +40,10 @@ University
 This app is organized around the EIS workflow used in the private suite:
 
 **Reads instrument files directly.** Besides CSV/Excel/TXT, every uploader
-also takes raw **BioLogic EC-Lab `.mpr`/`.mpt`** and **Pine Research
-AfterMath `.paax`** exports, frequency included, with a picker when one file
-bundles several experiments.
+also takes raw **BioLogic EC-Lab `.mpr`/`.mpt`**, **Pine Research AfterMath
+`.paax`**, **Gamry `.DTA`**, **Scribner ZPlot/ZView `.z`**, **PAR VersaStudio
+`.par`**, and **PalmSens `.pssession`** exports, frequency included, with a
+picker when one file bundles several experiments.
 
 - **Nyquist**: upload impedance spectra, map real/imaginary columns, overlay
   plots, read approximate Rs/Rct landmarks, run a circuit fit, and check an
@@ -131,7 +132,9 @@ Supported uploads:
 - XLSX / XLS
 - TXT and similar delimited text files
 - Raw instrument exports, parsed directly (frequency included): **BioLogic
-  EC-Lab** `.mpr` / `.mpt` and **Pine Research AfterMath** `.paax`
+  EC-Lab** `.mpr` / `.mpt`, **Pine Research AfterMath** `.paax`, **Gamry**
+  `.DTA`, **Scribner ZPlot/ZView** `.z`, **PAR VersaStudio** `.par`, and
+  **PalmSens PSTrace** `.pssession`
 
 ---
 
